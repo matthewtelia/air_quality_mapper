@@ -8,6 +8,7 @@ print(sys.path)
 print(os.getcwd())
 
 
+
 # %%
 from api_caller.Client import Client
 from api_caller.historical_conditions import historical_conditions
