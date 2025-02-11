@@ -255,6 +255,7 @@ def plot_regression_plot(epa_mod_data_merge,epa_name, mod_name, google_name):
  
  #############################################################################
 
+
  # Create a figure and axis
     fig, ax = plt.subplots()
 
@@ -388,35 +389,35 @@ def calculate_error(merged_data, epa_name, mod_name, google_name):
     return error_df, mae_quantaq, rmse_quantaq, re_quantaq, mae_google, rmse_google, re_google
 
 
-
+if __name__ == "__main__":
 
 # Paths to the data files
 
-chelsea_epa_path = 'C:\\Users\\eliam\\OneDrive - Northeastern University\\Documents\\GitHub\\data_products_compare\\data\\EPA\\chelsea_epa\\chelsea_epa_hourly.csv'
-mod_247_path = 'C:\\Users\\eliam\\OneDrive - Northeastern University\\Documents\\GitHub\\data_products_compare\\data\\quantaq\\MOD-00247_2024-5-18_2024-6-17.csv'
-mod_247_raw_path = 'C:\\Users\\eliam\\OneDrive - Northeastern University\\Documents\\GitHub\\data_products_compare\\data\\quantaq\\quantaqMOD-00247_2024-5-18_2024-6-17_raw.csv'
-google_247_path = 'C:\\Users\\eliam\\OneDrive - Northeastern University\\Documents\\GitHub\\data_products_compare\\data\\google\\googleMOD-00247_-71.025_42.387.csv'
+    chelsea_epa_path = 'C:\\Users\\eliam\\OneDrive - Northeastern University\\Documents\\GitHub\\data_products_compare\\data\\EPA\\chelsea_epa\\chelsea_epa_hourly.csv'
+    mod_247_path = 'C:\\Users\\eliam\\OneDrive - Northeastern University\\Documents\\GitHub\\data_products_compare\\data\\quantaq\\MOD-00247_2024-5-18_2024-6-17.csv'
+    mod_247_raw_path = 'C:\\Users\\eliam\\OneDrive - Northeastern University\\Documents\\GitHub\\data_products_compare\\data\\quantaq\\quantaqMOD-00247_2024-5-18_2024-6-17_raw.csv'
+    google_247_path = 'C:\\Users\\eliam\\OneDrive - Northeastern University\\Documents\\GitHub\\data_products_compare\\data\\google\\googleMOD-00247_-71.025_42.387.csv'
 
-# Load the data
-mod_247_data, mod_247_raw_data, google_247_data, mod247_name, mod247_raw_name, google247_name = load_data(mod_247_path, mod_247_raw_path, google_247_path)
+    # Load the data
+    mod_247_data, mod_247_raw_data, google_247_data, mod247_name, mod247_raw_name, google247_name = load_data(mod_247_path, mod_247_raw_path, google_247_path)
 
-# Process the data
-chelsea_epa_data, chelsea_epa_name = process_epa_data(chelsea_epa_path)
-mod_pm25_247_data,mod_247_hourly= process_mod_data(mod_247_data,mod_247_raw_data, mod247_name)
-google_pm25_247_data = process_google_data(google_247_data, google247_name)
+    # Process the data
+    chelsea_epa_data, chelsea_epa_name = process_epa_data(chelsea_epa_path)
+    mod_pm25_247_data,mod_247_hourly= process_mod_data(mod_247_data,mod_247_raw_data, mod247_name)
+    google_pm25_247_data = process_google_data(google_247_data, google247_name)
 
-# Plot the data
-plot_data(chelsea_epa_data,mod_pm25_247_data,google_pm25_247_data,chelsea_epa_name,mod247_name,google247_name)
-merged_247_data,merged_247_entries = merge_data(chelsea_epa_data,mod_pm25_247_data,google_pm25_247_data,chelsea_epa_name,mod247_name,google247_name)
+    # Plot the data
+    plot_data(chelsea_epa_data,mod_pm25_247_data,google_pm25_247_data,chelsea_epa_name,mod247_name,google247_name)
+    merged_247_data,merged_247_entries = merge_data(chelsea_epa_data,mod_pm25_247_data,google_pm25_247_data,chelsea_epa_name,mod247_name,google247_name)
 
-# %%
+    # %%
 
-#calculate error
-plot_regression_plot(merged_247_data,chelsea_epa_name,mod247_name,google247_name)
+    #calculate error
+    plot_regression_plot(merged_247_data,chelsea_epa_name,mod247_name,google247_name)
 
 
-# %%
-error_247, mae_247_quantaq, rmse_247_quantaq, re_247_quantaq, mae_247_google, rmse_247_google, re_247_google = calculate_error(merged_247_data, chelsea_epa_name, mod247_name, google247_name)
+    # %%
+    error_247, mae_247_quantaq, rmse_247_quantaq, re_247_quantaq, mae_247_google, rmse_247_google, re_247_google = calculate_error(merged_247_data, chelsea_epa_name, mod247_name, google247_name)
 
 
 
